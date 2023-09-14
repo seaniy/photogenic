@@ -11,7 +11,7 @@ s3_client = boto3.client('s3', aws_access_key_id=ACCESS_KEY, aws_secret_access_k
 st.set_page_config(
     page_title="Gallery",
     page_icon="📷",
-    layout="centered",
+    layout="wide",
 )
 
 def list_files():

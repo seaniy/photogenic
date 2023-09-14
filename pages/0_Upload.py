@@ -13,7 +13,7 @@ s3_client = boto3.client('s3', aws_access_key_id=ACCESS_KEY, aws_secret_access_k
 st.set_page_config(
     page_title="Upload",
     page_icon="📷",
-    layout="centered",
+    layout="wide",
 )
 
 def upload_to_s3(file, filename):
@@ -50,7 +50,7 @@ def upload():
         # Display transformed image
         st.image(img, caption="Transformed Image.", use_column_width=True)
 
-        if st.button("Upload to S3"):
+        if st.button("Upload to Gallery"):
             # Convert the PIL image back to a byte stream for uploading
             buffer = BytesIO()
             img_format = "PNG" if uploaded_file.name.endswith(".png") else "JPEG"
@@ -58,7 +58,8 @@ def upload():
             buffer.seek(0)
 
             upload_to_s3(buffer, uploaded_file.name)
-            st.success(f"Uploaded {uploaded_file.name} to S3!")
+            st.success(f"Uploaded {uploaded_file.name} successfully!")
+            st.balloons()
     # if uploaded_file is not None:
     #     # st.image(uploaded_file, caption="Uploaded Image.", use_column_width=True)
     #     if st.button("Upload to Gallery"):
