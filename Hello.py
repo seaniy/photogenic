@@ -14,6 +14,7 @@
 
 import streamlit as st
 from streamlit.logger import get_logger
+from streamlit_extras.switch_page_button import switch_page
 
 LOGGER = get_logger(__name__)
 
@@ -23,7 +24,6 @@ def run():
         page_title="Hello",
         page_icon="👋",
     )
-
     st.write("# Welcome to Sean & Carissa's Wedding Gallery! 👋")
 
     st.sidebar.success("Select a page above.")
@@ -42,10 +42,11 @@ def run():
 
         **With all our love,**  
         Sean & Carissa ❤️
-
-        **Take Note: You may find the upload & gallery pages on the sidebar menu. If you do not see a sidebar menu, please click on the arrow at the top left of the page.**
         """
     )
+
+    if st.button("Get Started"):
+        switch_page("upload")
 
 if __name__ == "__main__":
     run()

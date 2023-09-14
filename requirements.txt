@@ -4,3 +4,4 @@ pandas
 pydeck
 streamlit
 boto3
+streamlit_extras

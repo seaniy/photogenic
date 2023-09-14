@@ -11,10 +11,9 @@ BUCKET_NAME = st.secrets["BUCKET_NAME"]
 s3_client = boto3.client('s3', aws_access_key_id=ACCESS_KEY, aws_secret_access_key=SECRET_KEY)
 
 st.set_page_config(
-    page_title="Sean & Carissa's Wedding Photo Repository",
+    page_title="Upload",
     page_icon="📷",
-    layout="wide",
-    initial_sidebar_state="expanded"
+    layout="centered",
 )
 
 def upload_to_s3(file, filename):
