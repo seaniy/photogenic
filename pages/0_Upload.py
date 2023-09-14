@@ -13,7 +13,6 @@ s3_client = boto3.client('s3', aws_access_key_id=ACCESS_KEY, aws_secret_access_k
 st.set_page_config(
     page_title="Upload",
     page_icon="📷",
-    layout="wide",
 )
 
 def upload_to_s3(file, filename):
