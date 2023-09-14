@@ -15,7 +15,6 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-@st.cache_data
 def list_files():
     """Return the list of files in the S3 bucket."""
     files = s3_client.list_objects_v2(Bucket=BUCKET_NAME)
@@ -58,7 +57,7 @@ def display():
                 filename2 = files[i + 1]
                 image_data2 = download_from_s3(filename2)
                 status_text.text("%s%% Complete" % str((i+2)*100/len(files)))
-                progress_bar.progress((i+1)/len(files))
+                progress_bar.progress((i+2)/len(files))
                 col2.image(image_data2, caption=filename2, use_column_width=True)
     else:
         st.write("No images found in the S3 bucket.")
