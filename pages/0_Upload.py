@@ -36,11 +36,11 @@ def upload():
 
         # Apply transformations based on user choices
         if rotation_options == "90°":
-            img = img.rotate(-90)
+            img = img.rotate(-90, expand=True)
         elif rotation_options == "180°":
-            img = img.rotate(-180)
+            img = img.rotate(-180, expand=True)
         elif rotation_options == "270°":
-            img = img.rotate(-270)
+            img = img.rotate(-270, expand=True)
 
         if flip_option == "Horizontal":
             img = ImageOps.mirror(img)
