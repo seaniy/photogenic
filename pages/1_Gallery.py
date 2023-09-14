@@ -13,6 +13,14 @@ st.set_page_config(
     page_icon="📷",
 )
 
+hide_streamlit_style = """
+            <style>
+            #MainMenu {visibility: hidden;}
+            footer {visibility: hidden;}
+            </style>
+            """
+st.markdown(hide_streamlit_style, unsafe_allow_html=True)
+
 def list_files():
     """Return the list of files in the S3 bucket."""
     files = s3_client.list_objects_v2(Bucket=BUCKET_NAME)

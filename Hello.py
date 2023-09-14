@@ -24,6 +24,14 @@ def run():
         page_title="Hello",
         page_icon="👋",
     )
+    hide_streamlit_style = """
+            <style>
+            #MainMenu {visibility: hidden;}
+            footer {visibility: hidden;}
+            </style>
+            """
+    st.markdown(hide_streamlit_style, unsafe_allow_html=True)
+
     st.write("# Welcome to Sean & Carissa's Wedding Gallery! 👋")
 
     st.sidebar.success("Select a page above.")

@@ -15,6 +15,14 @@ st.set_page_config(
     page_icon="📷",
 )
 
+hide_streamlit_style = """
+            <style>
+            #MainMenu {visibility: hidden;}
+            footer {visibility: hidden;}
+            </style>
+            """
+st.markdown(hide_streamlit_style, unsafe_allow_html=True)
+
 def upload_to_s3(file, filename):
     """Uploads the given file to the S3 bucket."""
     s3_client.upload_fileobj(file, BUCKET_NAME, filename)
