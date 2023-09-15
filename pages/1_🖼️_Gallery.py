@@ -55,14 +55,16 @@ def display():
             
             filename1 = files[i]
             image_data1 = download_from_s3(filename1)
-            status_text.text("%s%% Complete" % str((i+1)*100/len(files)))
+            format_float = "{:.2f}".format((i+1)*100/len(files))
+            status_text.text("%s%% Complete" % str(format_float))
             progress_bar.progress((i+1)/len(files))
             col1.image(image_data1, caption=filename1, use_column_width=True)
             
             if i + 1 < len(files):
                 filename2 = files[i + 1]
                 image_data2 = download_from_s3(filename2)
-                status_text.text("%s%% Complete" % str((i+2)*100/len(files)))
+                format_float = "{:.2f}".format((i+2)*100/len(files))
+                status_text.text("%s%% Complete" % str(format_float))
                 progress_bar.progress((i+2)/len(files))
                 col2.image(image_data2, caption=filename2, use_column_width=True)
     else:
