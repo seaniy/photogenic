@@ -42,6 +42,7 @@ def upload():
         # Convert uploaded file to PIL image
         img = Image.open(uploaded_file)
         # st.image(img, caption="Uploaded Image.", use_column_width=True)
+        img = ImageOps.exif_transpose(img)
 
         # Orientation edit options
         st.subheader("3. Edit Image Orientation")
