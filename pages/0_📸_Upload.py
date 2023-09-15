@@ -44,32 +44,30 @@ def upload():
         # st.image(img, caption="Uploaded Image.", use_column_width=True)
         img = ImageOps.exif_transpose(img)
 
-        # Orientation edit options
-        st.subheader("3. Edit Image Orientation")
-        rotation_options = st.radio("Rotate Image", ["No rotation", "90°", "180°", "270°"])
-        flip_option = st.radio("Flip Image", ["No flip", "Horizontal", "Vertical"])
+        # # Orientation edit options
+        # st.subheader("3. Edit Image Orientation")
+        # rotation_options = st.radio("Rotate Image", ["No rotation", "90°", "180°", "270°"])
+        # flip_option = st.radio("Flip Image", ["No flip", "Horizontal", "Vertical"])
 
-        # Apply transformations based on user choices
-        if rotation_options == "90°":
-            img = img.rotate(-90, expand=True)
-        elif rotation_options == "180°":
-            img = img.rotate(-180, expand=True)
-        elif rotation_options == "270°":
-            img = img.rotate(-270, expand=True)
+        # # Apply transformations based on user choices
+        # if rotation_options == "90°":
+        #     img = img.rotate(-90, expand=True)
+        # elif rotation_options == "180°":
+        #     img = img.rotate(-180, expand=True)
+        # elif rotation_options == "270°":
+        #     img = img.rotate(-270, expand=True)
 
-        if flip_option == "Horizontal":
-            img = ImageOps.mirror(img)
-        elif flip_option == "Vertical":
-            img = ImageOps.flip(img)
+        # if flip_option == "Horizontal":
+        #     img = ImageOps.mirror(img)
+        # elif flip_option == "Vertical":
+        #     img = ImageOps.flip(img)
 
         # Display transformed image
-        st.image(img, caption="Transformed Image.", use_column_width=True)
+        st.image(img, use_column_width=True)
 
-        st.subheader("4. Confirm Upload")
+        st.subheader("3. Confirm Upload")
         if st.button("Upload to Gallery"):
             if user_name:
-                progress_bar = st.progress(0)
-                status_text = st.text("Refreshing...")
                 # Generate a unique filename
                 unique_id = str(int(time.time()))
                 ext = uploaded_file.name.split('.')[-1]
@@ -82,12 +80,16 @@ def upload():
                 buffer.seek(0)
 
                 upload_to_s3(buffer, new_filename)
-                st.success(f"Uploaded {new_filename} successfully!")
-                st.balloons()
+                progress_bar = st.progress(0)
+                status_text = st.text("Uploading...")
+                time.sleep(0.5)
                 for i in range(1, 4):
-                    progress_bar.text("%i%%" % (100/3*i))
-                    status_text.progress(i/3)
+                    status_text.text("%i%%" % (100/3*i))
+                    progress_bar.progress(i/3)
                     time.sleep(1)
+                st.success(f"Uploaded {new_filename} successfully!\nRefreshing...")
+                st.balloons()
+                time.sleep(3)
                 st.session_state["file_uploader_key"] += 1
                 st.experimental_rerun()
             else:
